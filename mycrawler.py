@@ -5,6 +5,7 @@
 
 from bs4 import BeautifulSoup
 from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
 import requests
 import pandas as pd
 
@@ -13,7 +14,7 @@ url = 'https://event.hktdc.com/fair/hklightingfairae-en/Trade-Online-Product/HKT
 # You must install the chromedriver to your PATH otherwise exception may throw
 browser = webdriver.Chrome()
 browser.get(url)
-element = WebDriverWait(driver, 10).until(lambda x: x.find_elements_by_class_name('item_list'))
+element = WebDriverWait(browser, 10).until(lambda x: x.find_elements_by_class_name('item_list'))
 
 html = browser.page_source
 soup = BeautifulSoup(html,'html.parser')
